@@ -9,11 +9,18 @@ namespace HelloWorld.Controllers
 {
     public class HomeController : Controller
     {
+        private IProductRepository productRepository;
+
+        public HomeController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
+
         // GET: Home
         public ActionResult Index()
         {
-            int x = 1;
-            x = x / (x - 1);
+            //int x = 1;
+            //x = x / (x - 1);
 
             return View();
         }
@@ -25,33 +32,12 @@ namespace HelloWorld.Controllers
 
         public ActionResult Product()
         {
-            var myProduct = new Product
-            {
-                ProductId = 1,
-                Name = "Kayak",
-                Description = "A boat for one person",
-                Category = "water-sports",
-                Price = 200m,
-            };
-
-            ViewBag.Title = "Single Product";
-
-            return View(myProduct);
+            return View(productRepository.Products.First());
         }
 
         public ActionResult Products()
         {
-            var products = new Product[]
-            {
-        new Product{ ProductId = 1, Name = "First One", Price = 1.11m},
-        new Product{ ProductId = 2, Name="Second One", Price = 2.22m},
-        new Product{ ProductId = 3, Name="Third One", Price = 3.33m},
-        new Product{ ProductId = 4, Name="Fourth One", Price = 4.44m},
-            };
-
-            ViewBag.Title = "Multiple Products";
-
-            return View(products);
+            return View(productRepository.Products);
         }
 
         [HttpGet]
