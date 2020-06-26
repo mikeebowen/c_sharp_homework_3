@@ -40,8 +40,11 @@ namespace HelloWorld.Tests
                 .Returns(() =>
                 {
                     return new Product[] {
-                        new Product{Name="Baseball"},
-                        new Product{Name="Football"}
+                        new Product{Name="Baseball", Price=11},
+                        new Product{Name="Football", Price=8},
+                        new Product{Name="Tennis ball", Price=13},
+                        new Product{Name="Golf ball", Price=3},
+                        new Product{Name="Ping pong ball", Price=12},
                     };
                 });
 
@@ -53,7 +56,13 @@ namespace HelloWorld.Tests
 
             // Assert
             var products = (Product[])((System.Web.Mvc.ViewResultBase)(result)).Model;
-            Assert.AreEqual(2, products.Length, "Length is invalid");
+            Assert.AreEqual(5, products.Length, "Length is invalid");
+
+            Assert.IsTrue(products.Where(t => t.Price > 10).Count() >= 3,
+                "Too few > $10");
+
+            Assert.IsTrue(products.Where(t => t.Price < 10).Count() <= 2,
+                "Too many < $10");
         }
     }
 }
