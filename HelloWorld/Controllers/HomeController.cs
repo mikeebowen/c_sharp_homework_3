@@ -12,6 +12,14 @@ namespace HelloWorld.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            int x = 1;
+            x = x / (x - 1);
+
+            return View();
+        }
+
+        public ActionResult Error()
+        {
             return View();
         }
 
@@ -26,6 +34,8 @@ namespace HelloWorld.Controllers
                 Price = 200m,
             };
 
+            ViewBag.Title = "Single Product";
+
             return View(myProduct);
         }
 
@@ -38,6 +48,8 @@ namespace HelloWorld.Controllers
         new Product{ ProductId = 3, Name="Third One", Price = 3.33m},
         new Product{ ProductId = 4, Name="Fourth One", Price = 4.44m},
             };
+
+            ViewBag.Title = "Multiple Products";
 
             return View(products);
         }
