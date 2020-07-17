@@ -22,6 +22,9 @@
 <body>
     <div class="text-center">
         <h2>The party is tonight.</h2>
+
+        @Html.Action("IncrementCount")
+
         <h3>And you're invited</h3>
 
         <div class="btn btn-success">
@@ -34,6 +37,18 @@
 
         <div class="btn btn-success">
             @Html.ActionLink("View Products", "Products")
+        </div>
+        <div class="btn btn-success">
+            @Html.ActionLink("Set Cookie", "SetCookie")
+        </div>
+        <div class="btn btn-success">
+            @Html.ActionLink("Get Cookie", "GetCookie")
+        </div>
+        <div class="btn btn-success">
+            @Html.ActionLink("Secure Notes", "Notes")
+        </div>
+        <div class="btn btn-success">
+            @Html.ActionLink("Logout", "LogOut", "Account")
         </div>
     </div>
 </body>
